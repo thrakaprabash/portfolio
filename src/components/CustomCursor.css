@@ -1,0 +1,47 @@
+/* CustomCursor.css */
+
+/* We inject body cursor: none via JS only for desktop */
+a,
+button,
+.project-card,
+.skill-category {
+    cursor: none !important;
+}
+
+.cursor-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 8px;
+    height: 8px;
+    background-color: var(--accent-cyan);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+.cursor-outline {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 40px;
+    border: 1.5px solid var(--accent-purple);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+}
+
+@media (max-width: 768px) {
+
+    a,
+    button,
+    .project-card,
+    .skill-category {
+        cursor: pointer !important;
+    }
+
+    body {
+        cursor: auto !important;
+    }
+}
