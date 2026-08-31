@@ -1,17 +1,30 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useSpring, useMotionValue } from 'framer-motion';
 import './CustomCursor.css';
 
 const CustomCursor = () => {
-    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
     const [isHovering, setIsHovering] = useState(false);
+    const [isVisible, setIsVisible] = useState(false);
+
+    const mouseX = useMotionValue(-100);
+    const mouseY = useMotionValue(-100);
+
+    const springConfigFast = { damping: 25, stiffness: 400 };
+    const springConfigSlow = { damping: 20, stiffness: 200 };
+
+    const dotX = useSpring(mouseX, springConfigFast);
+    const dotY = useSpring(mouseY, springConfigFast);
+
+    const ringX = useSpring(mouseX, springConfigSlow);
+    const ringY = useSpring(mouseY, springConfigSlow);
 
     useEffect(() => {
-        // Only run on desktop
-        if (window.innerWidth <= 768) return;
+        if (typeof window === 'undefined' || window.innerWidth <= 768) return;
 
-        const updateMousePosition = (e) => {
-            setMousePosition({ x: e.clientX, y: e.clientY });
+        const handleMouseMove = (e) => {
+            mouseX.set(e.clientX);
+            mouseY.set(e.clientY);
+            if (!isVisible) setIsVisible(true);
         };
 
         const handleMouseOver = (e) => {
@@ -20,8 +33,9 @@ const CustomCursor = () => {
                 e.target.tagName === 'BUTTON' ||
                 e.target.closest('a') ||
                 e.target.closest('button') ||
-                e.target.classList.contains('project-card') ||
-                e.target.classList.contains('skill-category')
+                e.target.closest('.project-card') ||
+                e.target.closest('.skill-category') ||
+                e.target.closest('.about-card')
             ) {
                 setIsHovering(true);
             } else {
@@ -29,45 +43,57 @@ const CustomCursor = () => {
             }
         };
 
-        window.addEventListener('mousemove', updateMousePosition);
-        window.addEventListener('mouseover', handleMouseOver);
+        const handleMouseLeave = () => {
+            setIsVisible(false);
+        };
 
-        // Hide default cursor
+        window.addEventListener('mousemove', handleMouseMove);
+        window.addEventListener('mouseover', handleMouseOver);
+        document.addEventListener('mouseleave', handleMouseLeave);
+
         document.body.style.cursor = 'none';
 
         return () => {
-            window.removeEventListener('mousemove', updateMousePosition);
+            window.removeEventListener('mousemove', handleMouseMove);
             window.removeEventListener('mouseover', handleMouseOver);
+            document.removeEventListener('mouseleave', handleMouseLeave);
             document.body.style.cursor = 'auto';
         };
-    }, []);
+    }, [isVisible]);
 
-    // Don't render on mobile
-    if (typeof window !== 'undefined' && window.innerWidth <= 768) {
-        return null;
-    }
+    if (!isVisible) return null;
 
     return (
         <>
+            {/* Center dot */}
             <motion.div
                 className="cursor-dot"
-                animate={{
-                    x: mousePosition.x - 4,
-                    y: mousePosition.y - 4,
-                    scale: isHovering ? 0 : 1
+                style={{
+                    x: dotX,
+                    y: dotY,
+                    translateX: '-50%',
+                    translateY: '-50%',
                 }}
-                transition={{ type: "tween", ease: "backOut", duration: 0.1 }}
+                animate={{
+                    scale: isHovering ? 0 : 1,
+                }}
             />
+
+            {/* Glowing outer aura ring */}
             <motion.div
                 className="cursor-outline"
-                animate={{
-                    x: mousePosition.x - 20,
-                    y: mousePosition.y - 20,
-                    scale: isHovering ? 1.5 : 1,
-                    backgroundColor: isHovering ? "rgba(6, 182, 212, 0.1)" : "transparent",
-                    borderColor: isHovering ? "rgba(6, 182, 212, 0.5)" : "var(--accent-purple)"
+                style={{
+                    x: ringX,
+                    y: ringY,
+                    translateX: '-50%',
+                    translateY: '-50%',
                 }}
-                transition={{ type: "tween", ease: "easeOut", duration: 0.15 }}
+                animate={{
+                    scale: isHovering ? 1.6 : 1,
+                    borderColor: isHovering ? 'rgba(6, 182, 212, 0.9)' : 'rgba(139, 92, 246, 0.6)',
+                    backgroundColor: isHovering ? 'rgba(6, 182, 212, 0.12)' : 'rgba(139, 92, 246, 0.03)',
+                    boxShadow: isHovering ? '0 0 15px rgba(6, 182, 212, 0.4)' : '0 0 5px rgba(139, 92, 246, 0.2)'
+                }}
             />
         </>
     );
