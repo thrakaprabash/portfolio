@@ -240,15 +240,37 @@
     }
 }
 
-@media (max-width: 640px) {
-    .stats-strip {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
+@media (max-width: 768px) {
     .about-cards-container {
         grid-template-columns: 1fr;
     }
+}
+
+@media (max-width: 640px) {
+    .stats-strip {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+    }
     .about-body {
         padding: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .stats-strip {
+        padding: 1rem;
+        gap: 1rem;
+    }
+    .stat-number {
+        font-size: 1.35rem;
+    }
+    .about-body {
+        padding: 1.2rem;
+    }
+    .about-text h3 {
+        font-size: 1.35rem;
+    }
+    .about-card {
+        padding: 1.2rem;
     }
 }

@@ -229,3 +229,22 @@
         padding: 1.4rem;
     }
 }
+
+@media (max-width: 480px) {
+    .skill-category,
+    .learning-progress {
+        padding: 1.1rem;
+    }
+    .learning-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.8rem;
+    }
+    .learning-progress h3 {
+        font-size: 1.15rem;
+    }
+    .skill-tag {
+        font-size: 0.8rem;
+        padding: 0.3rem 0.65rem;
+    }
+}

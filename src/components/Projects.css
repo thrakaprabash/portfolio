@@ -195,3 +195,24 @@
         gap: 1.5rem;
     }
 }
+
+@media (max-width: 480px) {
+    .project-card {
+        padding: 1.3rem;
+    }
+    .project-title {
+        font-size: 1.2rem;
+    }
+    .project-filter-tabs {
+        gap: 0.35rem;
+        margin-bottom: 2rem;
+    }
+    .filter-tab {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.85rem;
+    }
+    .project-tag {
+        font-size: 0.72rem;
+        padding: 0.2rem 0.55rem;
+    }
+}

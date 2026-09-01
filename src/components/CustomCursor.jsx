@@ -19,7 +19,14 @@ const CustomCursor = () => {
     const ringY = useSpring(mouseY, springConfigSlow);
 
     useEffect(() => {
-        if (typeof window === 'undefined' || window.innerWidth <= 768) return;
+        if (
+            typeof window === 'undefined' ||
+            window.innerWidth <= 768 ||
+            window.matchMedia('(hover: none)').matches ||
+            'ontouchstart' in window
+        ) {
+            return;
+        }
 
         const handleMouseMove = (e) => {
             mouseX.set(e.clientX);
