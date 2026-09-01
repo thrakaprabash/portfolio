@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, FileDown } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
@@ -17,6 +17,7 @@ const Navbar = () => {
     const [scrolled, setScrolled] = useState(false);
     const [activeSection, setActiveSection] = useState('home');
     const [mobileOpen, setMobileOpen] = useState(false);
+    const navRef = useRef(null);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -38,12 +39,25 @@ const Navbar = () => {
             }
         };
 
+        const handleClickOutside = (e) => {
+            if (navRef.current && !navRef.current.contains(e.target)) {
+                setMobileOpen(false);
+            }
+        };
+
         window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
+        document.addEventListener('mousedown', handleClickOutside);
+        document.addEventListener('touchstart', handleClickOutside);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+            document.removeEventListener('mousedown', handleClickOutside);
+            document.removeEventListener('touchstart', handleClickOutside);
+        };
     }, []);
 
     return (
-        <header className={`navbar-header ${scrolled ? 'scrolled' : ''}`}>
+        <header className={`navbar-header ${scrolled ? 'scrolled' : ''}`} ref={navRef}>
             <div className="navbar-container glass-panel">
                 <a href="#home" className="navbar-logo">
                     <span className="logo-bracket">&lt;</span>

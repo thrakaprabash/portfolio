@@ -351,13 +351,16 @@
 
 /* Responsive */
 @media (max-width: 992px) {
+    .hero-section {
+        padding: 100px 0 60px;
+    }
     .hero-title {
         font-size: 2.9rem;
     }
     .hero-container {
         flex-direction: column-reverse;
         text-align: center;
-        gap: 3rem;
+        gap: 2.5rem;
     }
     .hero-content {
         display: flex;
@@ -385,8 +388,21 @@
 }
 
 @media (max-width: 576px) {
+    .hero-section {
+        padding: 90px 0 50px;
+    }
+    .hero-image-container {
+        min-height: auto;
+    }
+    .floating-badge {
+        display: none;
+    }
     .hero-title {
         font-size: 2.2rem;
+    }
+    .hero-description {
+        max-width: 100%;
+        font-size: 0.98rem;
     }
     .hero-typewriter-container {
         font-size: 1.15rem;
@@ -394,6 +410,7 @@
     .hero-actions {
         flex-direction: column;
         width: 100%;
+        gap: 0.8rem;
     }
     .hero-actions .magnetic-wrap,
     .btn-primary,
@@ -407,5 +424,30 @@
     .neural-center-avatar {
         width: 130px;
         height: 130px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-section {
+        padding: 80px 0 40px;
+    }
+    .hero-title {
+        font-size: 1.85rem;
+    }
+    .hero-typewriter-container {
+        font-size: 1rem;
+        min-height: 1.8rem;
+    }
+    .greeting {
+        font-size: 0.9rem;
+        padding: 4px 10px;
+    }
+    .neural-planet-wrapper {
+        width: 250px;
+        height: 250px;
+    }
+    .neural-center-avatar {
+        width: 110px;
+        height: 110px;
     }
 }
