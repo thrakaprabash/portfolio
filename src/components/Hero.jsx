@@ -70,7 +70,7 @@ const Hero = () => {
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.8, duration: 0.8 }}
                     >
-                        Engineering robust full-stack systems, modern cloud pipelines, and scalable APIs with a deep commitment to code quality and seamless user experiences.
+                        I build full-stack web and mobile applications, turn data into interactive dashboards, and create short-form video content.
                     </motion.p>
 
                     <motion.div

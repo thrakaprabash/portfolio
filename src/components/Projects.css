@@ -183,6 +183,19 @@
     font-weight: 500;
 }
 
+.project-sample-link {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    gap: 0.4rem;
+    margin-top: 1.25rem;
+    color: var(--accent-cyan);
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+}
+
 .more-projects {
     display: flex;
     justify-content: center;
