@@ -127,7 +127,7 @@ const About = () => {
                                 I engineer end-to-end full-stack systems with strong emphasis on backend architecture, clean code standards, and reliable performance.
                             </p>
                             <p>
-                                I am actively interested in <strong>micro-SaaS architectures, API design, DevOps pipelines</strong>, and intuitive digital product interfaces.
+                                I work on <strong>Flutter development and software QA at Gamage Recruiters</strong>. My projects also include interactive data visualization and short-form video editing.
                             </p>
                             <p>
                                 Recent focus areas include <strong>TypeScript, Next.js architecture, Docker containers, Kotlin, and AWS</strong>, alongside open-source collaborations like

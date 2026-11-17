@@ -1,7 +1,7 @@
-import React, { useState, useRef } from 'react';
+import { useState, useRef } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import Tilt from 'react-parallax-tilt';
-import { ExternalLink, Github, Monitor, Smartphone, Server, Sparkles, FolderCode } from 'lucide-react';
+import { ChartNoAxesColumn, ExternalLink, Github, Globe, Monitor, Smartphone, Server, Sparkles, FolderCode, Youtube } from 'lucide-react';
 import MagneticButton from './MagneticButton';
 import './Projects.css';
 
@@ -11,6 +11,39 @@ const Projects = () => {
     const [filter, setFilter] = useState('all');
 
     const projects = [
+        {
+            title: "FireBridge",
+            category: "web",
+            description: "Built a NASA Space Apps Challenge dashboard that maps NASA FIRMS active-fire detections on a 3D globe and flat map. The React frontend and Flask API let users compare daily MODIS and VIIRS counts on a shared grid and see how an experimental adjustment performs on held-out days.",
+            tags: ["React", "Flask", "Geospatial Visualization", "NASA FIRMS"],
+            github: "https://github.com/thrakaprabash/firebridge-nasa-harmonization-of-MODIS-and-VIIRS-hot-spots",
+            workSample: {
+                href: "https://github.com/thrakaprabash/firebridge-nasa-harmonization-of-MODIS-and-VIIRS-hot-spots#screenshots",
+                label: "View FireBridge screenshots"
+            },
+            featured: true,
+            icon: <Globe size={28} />
+        },
+        {
+            title: "YouTube Shorts Content Creation",
+            category: "media",
+            description: "Edited and published short-form videos and used YouTube Studio to review audience retention and how viewers responded to different edits.",
+            tags: ["Short-Form Video", "Video Editing", "Audience Analytics"],
+            workSample: {
+                href: "https://www.youtube.com/channel/UCeuArR8PgkG1z2L3V3y4w3Q",
+                label: "View YouTube channel"
+            },
+            featured: true,
+            icon: <Youtube size={28} />
+        },
+        {
+            title: "Power BI Orders & Returns Analysis",
+            category: "data",
+            description: "Built a Power BI report for coursework. Modeled relationships between Orders, Returns, and People tables and used report visuals to summarize orders and returns.",
+            tags: ["Power BI", "Data Modeling", "Data Visualization"],
+            featured: true,
+            icon: <ChartNoAxesColumn size={28} />
+        },
         {
             title: "nut-loose",
             category: "web",
@@ -75,7 +108,9 @@ const Projects = () => {
         { id: 'all', label: 'All Projects' },
         { id: 'web', label: 'Web & Full-Stack' },
         { id: 'mobile', label: 'Mobile & Tools' },
-        { id: 'opensource', label: 'Open Source' }
+        { id: 'opensource', label: 'Open Source' },
+        { id: 'data', label: 'Data Visualization' },
+        { id: 'media', label: 'Digital Media' }
     ];
 
     return (
@@ -103,6 +138,8 @@ const Projects = () => {
                     {filterTabs.map((tab) => (
                         <button
                             key={tab.id}
+                            type="button"
+                            aria-pressed={filter === tab.id}
                             className={`filter-tab ${filter === tab.id ? 'active' : ''}`}
                             onClick={() => setFilter(tab.id)}
                         >
@@ -156,15 +193,17 @@ const Projects = () => {
                                                         <span className="pulsing-dot"></span> Featured
                                                     </span>
                                                 )}
-                                                <a
-                                                    href={project.github}
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    aria-label={`GitHub repository for ${project.title}`}
-                                                    className="icon-link-btn"
-                                                >
-                                                    <Github size={18} />
-                                                </a>
+                                                {project.github && (
+                                                    <a
+                                                        href={project.github}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        aria-label={`GitHub repository for ${project.title}`}
+                                                        className="icon-link-btn"
+                                                    >
+                                                        <Github size={18} />
+                                                    </a>
+                                                )}
                                             </div>
                                         </div>
 
@@ -176,6 +215,16 @@ const Projects = () => {
                                                 <span key={i} className="project-tag">{tag}</span>
                                             ))}
                                         </div>
+                                        {project.workSample && (
+                                            <a
+                                                href={project.workSample.href}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="project-sample-link"
+                                            >
+                                                {project.workSample.label} <ExternalLink size={14} aria-hidden="true" />
+                                            </a>
+                                        )}
                                     </div>
                                 </Tilt>
                             </motion.div>

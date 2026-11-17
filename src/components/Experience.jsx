@@ -1,12 +1,22 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import Tilt from 'react-parallax-tilt';
-import { GraduationCap, GitPullRequest, Smartphone, Server, Award, Calendar, ExternalLink } from 'lucide-react';
+import { GraduationCap, GitPullRequest, Smartphone, Server, Briefcase, Calendar, ExternalLink } from 'lucide-react';
 import './Experience.css';
 
 const experiences = [
     {
-        period: "2023 — 2027 (Expected)",
+        period: "Oct 2026 - Present",
+        title: "Mobile Development / QA / Software Engineering Intern",
+        organization: "Gamage Recruiters",
+        description: "Contribute to a Flutter mobile dashboard, including financial statement charts, searchable records, and lab result views. Check screens against design prototypes and test layouts and workflows across light and dark modes.",
+        icon: <Briefcase size={22} />,
+        category: "work",
+        badge: "Current Internship",
+        skills: ["Flutter", "Dart", "Dashboard UI", "Software QA", "Postman", "Docker"]
+    },
+    {
+        period: "2023 - 2027 (Expected)",
         title: "BSc (Hons) IT - Software Engineering",
         organization: "SLIIT (Sri Lanka Institute of Information Technology)",
         description: "Focusing on data structures & algorithms, OOP, distributed computing, database systems, software architecture patterns, and software quality assurance.",
@@ -16,8 +26,8 @@ const experiences = [
         skills: ["Software Engineering", "OOP", "Data Structures", "DBMS", "Java", "C++"]
     },
     {
-        period: "2024 — Present",
-        title: "Smart Health Care — Open Source Contributor",
+        period: "2024 - Present",
+        title: "Smart Health Care - Open Source Contributor",
         organization: "Open Source Collaboration",
         description: "Contributed to core platform modules, healthcare record workflows, API design, and comprehensive documentation for medical appointment and patient management systems.",
         icon: <GitPullRequest size={22} />,
@@ -28,7 +38,7 @@ const experiences = [
     },
     {
         period: "2024",
-        title: "FocusTreeApp — Mobile Lead Developer",
+        title: "FocusTreeApp - Mobile Lead Developer",
         organization: "Productivity App",
         description: "Engineered a native Android gamified productivity application using Kotlin, implementing custom focus timers, local persistence, clean architecture, and intuitive UI components.",
         icon: <Smartphone size={22} />,
@@ -38,7 +48,7 @@ const experiences = [
         skills: ["Kotlin", "Android Studio", "Clean Architecture", "UI/UX", "State Management"]
     },
     {
-        period: "2024 — 2025",
+        period: "2024 - 2025",
         title: "Full-Stack & Micro-SaaS Ecosystems",
         organization: "Independent Development",
         description: "Developed and architected scalable web applications including toolsyne (developer utilities suite), nut-loose (youth awareness platform), and BoardMate (student hostel management system).",
